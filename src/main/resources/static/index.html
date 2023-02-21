@@ -1,0 +1,60 @@
+<script src="./service.js"></script>
+<script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+
+
+Id: <input id="person-id"><br>
+First Name: <input id="fname"><br>
+Last Name: <input id="lname"><br>
+<form>
+    <button onclick="create(event)">Create Person</button>
+    <button onclick="read(event)">Read By Id</button>
+    <button onclick="readAll(event)">Read All</button>
+    <button onclick="update(event)">Update</button>
+    <button onclick="destroy(event)">Delete</button>
+</form>
+
+
+
+<script>
+    class Person {
+        constructor(id_, fname_, lname_) {
+            this.id = id_;
+            this.firstName = fname_;
+            this.lastName = lname_;
+        }
+    }
+
+    function create(e) {
+        e.preventDefault();
+        console.log("click")
+        let firstName1 = document.getElementById("fname").value;
+        let lastName1 = document.getElementById("lname").value;
+        let jsonPerson1 = new Person(0, firstName1, lastName1);
+        let personData = JSON.stringify(jsonPerson1);
+        console.log(personData)
+
+
+        $.ajax({
+            type: "POST",
+            crossDomain: true,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            url: "/person-controller/create",
+            data: personData,
+            dataType: "JSON ",
+            success: function (response) {
+                alert(JSON.stringify(response));
+            },
+            error: function () {
+                alert('Error while request..');
+            }
+        });
+
+    }
+</script>
