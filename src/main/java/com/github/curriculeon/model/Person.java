@@ -1,5 +1,7 @@
 package com.github.curriculeon.model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -45,5 +47,18 @@ public class Person {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch(Exception e) {
+            return "Person{" +
+                    "id=" + id +
+                    ", firstName='" + firstName + '\'' +
+                    ", lastName='" + lastName + '\'' +
+                    '}';
+        }
     }
 }
