@@ -21,20 +21,6 @@ public class PersonController {
         this.service = service;
     }
 
-    @RequestMapping(value = "/create-default", method = RequestMethod.POST)
-    public ResponseEntity<Person> create() {
-        final Person responseBody = service.create(new Person(0L, "Leon", "Hunter"));
-        final ResponseEntity<Person> responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
-        return responseEntity;
-    }
-
-    @RequestMapping(value = "/get-bean", method = RequestMethod.GET)
-    @Qualifier("default-person")
-    public ResponseEntity<Person> getPersonBean(Person person) {
-        return new ResponseEntity<>(person, HttpStatus.OK);
-    }
-
-
     @RequestMapping(path = "/create", method = RequestMethod.POST)
     public ResponseEntity<Person> create(@RequestBody Person person) {
         final Person responseBody = service.create(person);
@@ -71,6 +57,4 @@ public class PersonController {
         final ResponseEntity<List<Person>> responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }
-
-
 }
