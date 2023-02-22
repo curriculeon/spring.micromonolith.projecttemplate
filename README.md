@@ -2,6 +2,8 @@
 
 ### Purpose
 * To provide a biolerplate full-stack monolithic application which is used as a template for extension
+* This application is deployed live at the link below
+  * https://spring-micromonolith-projecttemplate.onrender.com/
 
 ### How to Use From CLI
 1. Execute the command below from the root directory of this project to serve the application.
