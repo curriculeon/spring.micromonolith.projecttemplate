@@ -1,10 +1,11 @@
 package com.github.curriculeon.utils;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public interface Loggable {
     default Logger getLogger() {
-        return LogManager.getLogger(getClass());
+        return LoggerFactory.getLogger(getClass().getName());
     }
 }

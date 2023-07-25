@@ -8,6 +8,8 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
+import java.util.Arrays;
+
 @Aspect
 @Component
 public class LoggingConfig implements Loggable {
@@ -18,11 +20,12 @@ public class LoggingConfig implements Loggable {
         final MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
         final String className = methodSignature.getDeclaringType().getSimpleName();
         final String methodName = methodSignature.getName();
+        final String arguments = Arrays.toString(proceedingJoinPoint.getArgs());
         final StopWatch stopWatch = new StopWatch();
         Object result;
 
         //Measure method execution time
-        getLogger().info(String.format("Attempting to invoke `%s.%s`...", className, methodName));
+        getLogger().info(String.format("Attempting to invoke `%s.%s(%s)`...", className, methodName, arguments));
         stopWatch.start();
         try {
             result = proceedingJoinPoint.proceed();
@@ -32,7 +35,7 @@ public class LoggingConfig implements Loggable {
             stopWatch.stop();
         }
         final long elapsedTime = stopWatch.getTotalTimeMillis();
-        getLogger().info(String.format("`%s.%s` resulted in `%s` :: executed in %s ms", className, methodName, result, elapsedTime));
+        getLogger().info(String.format("`%s.%s(%s)` resulted in `%s` :: executed in %s ms", className, methodName, arguments, result, elapsedTime));
         return result;
     }
 }
