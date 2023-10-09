@@ -6,6 +6,8 @@ class Person {
     }
 }
 
+const updateDisplay = (response) => document.getElementById("output").innerText = JSON.stringify(response);
+
 function create(e) {
     e.preventDefault();
     console.log("click")
@@ -27,10 +29,10 @@ function create(e) {
         data: personData,
         dataType: "JSON ",
         success: function (response) {
-            alert(JSON.stringify(response));
+            updateDisplay(response);
         },
-        error: function () {
-            alert('Error while request..');
+        error: function (error) {
+            updateDisplay(error);
         }
     });
 
@@ -49,12 +51,12 @@ function read(e) {
             'Access-Control-Allow-Origin': '*'
         },
         url: "/person-controller/read/".concat(id),
-         dataType: "JSON",
+        dataType: "JSON",
         success: function (response) {
-            alert(JSON.stringify(response));
+            updateDisplay(response);
         },
-        error: function () {
-            alert('Error while request..');
+        error: function (error) {
+            updateDisplay(error);
         }
     });
 }
@@ -72,12 +74,12 @@ function readAll(e) {
             'Access-Control-Allow-Origin': '*'
         },
         url: "/person-controller/read-all",
-         dataType: "JSON",
+        dataType: "JSON",
         success: function (response) {
-            alert(JSON.stringify(response));
+            updateDisplay(response);
         },
-        error: function () {
-            alert('Error while request..');
+        error: function (error) {
+            updateDisplay(error);
         }
     });
 }
@@ -103,10 +105,10 @@ function update(e) {
         data: personData,
         dataType: "JSON",
         success: function (response) {
-            alert(JSON.stringify(response));
+            updateDisplay(response);
         },
-        error: function () {
-            alert('Error while request..');
+        error: function (error) {
+            updateDisplay(error);
         }
     });
 }
@@ -127,10 +129,10 @@ function destroy(e) {
         url: "/person-controller/delete/".concat(id),
         dataType: "JSON",
         success: function (response) {
-            alert(JSON.stringify(response));
+            updateDisplay(response);
         },
-        error: function () {
-            alert('Error while request..');
+        error: function (error) {
+            updateDisplay(error);
         }
     });
 }
