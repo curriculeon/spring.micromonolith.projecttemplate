@@ -22,39 +22,39 @@ public class PersonController {
     }
 
     @RequestMapping(path = "/create", method = RequestMethod.POST)
-    public ResponseEntity<Person> create(@RequestBody Person person) {
+    public ResponseEntity<?> create(@RequestBody Person person) {
         final Person responseBody = service.create(person);
-        final ResponseEntity<Person> responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
+        final ResponseEntity<?> responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }
 
 
     @RequestMapping(value = "/read/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Person> read(@PathVariable Long id) {
+    public ResponseEntity<?> read(@PathVariable Long id) {
         final Person responseBody = service.read(id);
-        final ResponseEntity<Person> responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
+        final ResponseEntity<?> responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Person> update(@PathVariable Long id, @RequestBody Person person) {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Person person) {
         final Person responseBody = service.update(id, person);
-        final ResponseEntity<Person> responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
+        final ResponseEntity<?> responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Person> delete(@PathVariable Long id) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         final Person responseBody = service.delete(id);
-        final ResponseEntity<Person> responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
+        final ResponseEntity<?> responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }
 
 
     @RequestMapping(value = "/read-all", method = RequestMethod.GET)
-    public ResponseEntity<List<Person>> readAll() {
-        final List<Person> responseBody = service.readAll();
-        final ResponseEntity<List<Person>> responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
+    public ResponseEntity<List<?>> readAll() {
+        final List<?> responseBody = service.readAll();
+        final ResponseEntity<List<?>> responseEntity = new ResponseEntity<>(responseBody, HttpStatus.OK);
         return responseEntity;
     }
 }
